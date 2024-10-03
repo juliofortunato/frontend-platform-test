@@ -13,6 +13,9 @@ const config: Config = {
         foreground: "var(--foreground)",
         "cod-gray": "#1d1d1d",
       },
+      fontFamily: {
+        sans: ["var(--font-articulat-cf)", "sans-serif"],
+      },
     },
   },
   plugins: [],
