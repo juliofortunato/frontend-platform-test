@@ -8,9 +8,14 @@ export default function FavoritesProvider({
 }: {
   children: ReactNode;
 }) {
-  const [favoriteSongIds, setFavoriteSongIds] = useState<number[]>(
-    JSON.parse(localStorage.getItem("favoriteSongIds") || "[]"),
-  );
+  const [favoriteSongIds, setFavoriteSongIds] = useState<number[]>([]);
+
+  useEffect(() => {
+    const savedFavorites = JSON.parse(
+      localStorage.getItem("favoriteSongIds") || "[]",
+    );
+    setFavoriteSongIds(savedFavorites);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("favoriteSongIds", JSON.stringify(favoriteSongIds));
