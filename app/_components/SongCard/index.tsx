@@ -1,4 +1,5 @@
 import { Song } from "@/app/_types/song";
+import { cn } from "@/app/_utils/cn";
 import { HeartIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

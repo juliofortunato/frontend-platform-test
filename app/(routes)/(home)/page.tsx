@@ -1,5 +1,6 @@
 import FavoritesButton from "@/app/_components/FavoritesButton";
 import Header from "../../_components/Header";
+import SongList from "./_components/SongList";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
             </p>
           </div>
         </div>
+        <SongList />
       </div>
     </>
   );
