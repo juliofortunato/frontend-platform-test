@@ -6,9 +6,9 @@ export default function SongLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <div className="h-screen bg-[#12303B]">
       <Header />
-      {children}
-    </>
+      <main>{children}</main>
+    </div>
   );
 }

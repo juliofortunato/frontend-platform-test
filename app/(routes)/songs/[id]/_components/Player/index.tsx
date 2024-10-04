@@ -1,8 +1,11 @@
 "use client";
 
+import FavoriteButton from "@/app/_components/FavoriteButton";
 import { useSong } from "@/app/_services/song";
-import { HeartIcon, PlayIcon } from "lucide-react";
+import { PauseIcon, PlayIcon } from "lucide-react";
 import Image from "next/image";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
+import Slider from "../Slider";
 
 interface PlayerProps {
   songId: number;
@@ -10,37 +13,125 @@ interface PlayerProps {
 
 const Player = ({ songId }: PlayerProps) => {
   const { data } = useSong(songId);
-  return (
-    <div>
-      <Image
-        alt=""
-        className="rounded-[5px] border border-[#666666]"
-        height={204}
-        src={`/assets/images/${data?.song.files.coverArt}`}
-        width={204}
-      />
-      <div>
-        <div>
-          <button className="h-16 w-16 rounded-full bg-white p-4 text-black">
-            <PlayIcon size={32} />
-          </button>
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [currentTime, setCurrentTime] = useState<number>(0);
+  const [duration, setDuration] = useState<number>(0);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-          <div>
-            <div className="flex items-center gap-5">
-              <h1 className="text-[2rem] font-medium">{data?.song.title}</h1>
-              <button>
-                <HeartIcon size={16} />
-              </button>
+  useEffect(() => {
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+    }
+  }, [isPlaying]);
+
+  const togglePlay = () => {
+    setIsPlaying((previous) => !previous);
+  };
+
+  const handleTimeUpdate = () => {
+    if (!audioRef.current) return;
+    setCurrentTime(audioRef.current.currentTime);
+  };
+
+  const handleSliderChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!audioRef.current) return;
+    const value = Number(e.target.value);
+    audioRef.current.currentTime = value;
+    setCurrentTime(value);
+  };
+
+  const handleLoadedMetadata = () => {
+    if (!audioRef.current) return;
+    setDuration(audioRef.current.duration);
+  };
+
+  const handleEnded = () => {
+    setIsPlaying(false);
+    setCurrentTime(0);
+
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+    }
+  };
+
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+  };
+
+  return (
+    <>
+      {/* <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50 blur-xl"
+        style={{
+          backgroundImage: `url('/assets/images/${data?.song.files.poster}')`,
+          backgroundPosition: "right center",
+          backgroundSize: "100% auto",
+        }}
+      /> */}
+
+      <div className="flex items-center gap-9">
+        <Image
+          alt=""
+          className="rounded-[5px] border border-[#666666]"
+          height={204}
+          src={`/assets/images/${data?.song.files.coverArt}`}
+          width={204}
+        />
+
+        <div className="flex flex-col gap-9">
+          <div className="flex items-center gap-9">
+            <button
+              className="h-16 w-16 rounded-full bg-white p-4 text-black hover:bg-white/80"
+              onClick={togglePlay}
+            >
+              {isPlaying ? (
+                <PauseIcon className="fill-black" size={32} />
+              ) : (
+                <PlayIcon className="fill-black" size={32} />
+              )}
+            </button>
+
+            <div>
+              <div className="flex items-center gap-5">
+                <h1 className="text-[2rem] font-medium">{data?.song.title}</h1>
+                {data?.id && <FavoriteButton songId={data.id} />}
+              </div>
+              <p className="font-medium text-white/90">
+                {data?.song.artist} &nbsp;&nbsp;|&nbsp;&nbsp;
+                {data?.song.album.title} &nbsp;&nbsp;|&nbsp;&nbsp;
+                {data?.song.album.year}
+              </p>
             </div>
-            <p className="font-medium">
-              {data?.song.artist} &nbsp;&nbsp;|&nbsp;&nbsp;
-              {data?.song.album.title} &nbsp;&nbsp;|&nbsp;&nbsp;
-              {data?.song.album.year}
-            </p>
+          </div>
+
+          <div className="space-y-1">
+            <Slider
+              value={currentTime}
+              max={duration}
+              step={1}
+              onChange={handleSliderChange}
+            />
+            <div className="flex items-center justify-between text-sm text-[#A8A8A8]">
+              <span>{formatTime(currentTime)}</span>
+              <span>-{formatTime(duration - currentTime)}</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <audio
+        onEnded={handleEnded}
+        onLoadedMetadata={handleLoadedMetadata}
+        onTimeUpdate={handleTimeUpdate}
+        ref={audioRef}
+        src={`/assets/audio/${data?.song.files.audio}`}
+      />
+    </>
   );
 };
 

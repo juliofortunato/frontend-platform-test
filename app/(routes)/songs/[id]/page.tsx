@@ -9,10 +9,10 @@ interface SongPageProps {
 
 const SongPage = ({ params: { id } }: SongPageProps) => {
   return (
-    <>
+    <div className="container relative mx-auto mt-[73px]">
       <Player songId={Number(id)} />
       <RelatedAlbums songId={Number(id)} />
-    </>
+    </div>
   );
 };
 
