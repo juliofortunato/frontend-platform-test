@@ -26,7 +26,7 @@ const SongCard = ({
   return (
     <Link
       className="w-full max-w-[283px] overflow-hidden rounded-md bg-[#262626]"
-      href={`/song/${song.id}`}
+      href={`/songs/${song.id}`}
     >
       <Image
         alt=""
