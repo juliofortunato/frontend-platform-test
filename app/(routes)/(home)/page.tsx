@@ -6,7 +6,7 @@ import SongList from "./_components/SongList";
 export default function Home() {
   return (
     <>
-      <Header />
+      <Header hideSearch />
 
       <div className="container mx-auto flex flex-col gap-10 pt-12">
         <div className="flex items-center justify-between">
