@@ -1,4 +1,4 @@
-import FavoritesButton from "@/app/_components/FavoritesButton";
+import FilterFavoritesButton from "@/app/_components/FilterFavoritesButton";
 import Header from "../../_components/Header";
 import LibraryFilters from "./_components/LibraryFilters";
 import SongList from "./_components/SongList";
@@ -13,7 +13,7 @@ export default function Home() {
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
               <h1 className="text-[2rem] font-medium">Your Library</h1>
-              <FavoritesButton />
+              <FilterFavoritesButton />
             </div>
             <p className="font-medium text-white/50">
               You have 10 songs in your library
