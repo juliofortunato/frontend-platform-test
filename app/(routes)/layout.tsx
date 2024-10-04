@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import FavoritesProvider from "../_providers/FavoritesProvider";
 import ReactQueryProvider from "../_providers/ReactQueryProvider";
 import "../globals.css";
 
@@ -33,7 +34,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${articulatCF.className} antialiased`}>
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+        <ReactQueryProvider>
+          <FavoritesProvider>{children}</FavoritesProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
