@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import ReactQueryProvider from "../_providers/ReactQueryProvider";
 import "../globals.css";
 
 const articulatCF = localFont({
@@ -31,7 +32,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${articulatCF.className} antialiased`}>{children}</body>
+      <body className={`${articulatCF.className} antialiased`}>
+        <ReactQueryProvider>{children}</ReactQueryProvider>
+      </body>
     </html>
   );
 }
