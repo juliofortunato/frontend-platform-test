@@ -1,11 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { Song } from "../_types/song";
+import api from "./api";
 
 export const fetchSongs = async () => {
-  const response = await axios.get<{ songs: Song[] }>(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/songs`,
-  );
+  const response = await api.get<{ songs: Song[] }>("/songs");
   return response.data;
 };
 
