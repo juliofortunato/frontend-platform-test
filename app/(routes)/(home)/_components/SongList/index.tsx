@@ -9,8 +9,10 @@ import { useContext } from "react";
 const SongList = () => {
   const { data, isLoading, error } = useSongs();
   const { searchTerm } = useContext(FiltersContext);
-  const filteredSongs = data?.songs.filter(({ song }) =>
-    song.title.toLowerCase().includes(searchTerm.toLowerCase()),
+  const filteredSongs = data?.songs.filter(
+    ({ song }) =>
+      song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      song.artist.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   if (isLoading) return <Loading />;
