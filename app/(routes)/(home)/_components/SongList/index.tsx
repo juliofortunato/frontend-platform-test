@@ -8,12 +8,16 @@ import { useContext } from "react";
 
 const SongList = () => {
   const { data, isLoading, error } = useSongs();
-  const { searchTerm } = useContext(FiltersContext);
+  const { searchTerm, sortAlphabetically } = useContext(FiltersContext);
   const filteredSongs = data?.songs.filter(
     ({ song }) =>
       song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       song.artist.toLowerCase().includes(searchTerm.toLowerCase()),
   );
+
+  if (sortAlphabetically) {
+    filteredSongs?.sort((a, b) => a.song.title.localeCompare(b.song.title));
+  }
 
   if (isLoading) return <Loading />;
 
