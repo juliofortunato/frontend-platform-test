@@ -10,7 +10,7 @@ const SongList = () => {
   const { favoriteSongIds, toggleFavorite } = useContext(FavoritesContext);
 
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-5 gap-4">
       {data?.songs?.map((song) => {
         const isFavorite = favoriteSongIds.includes(song.id);
 

@@ -9,7 +9,9 @@ interface ToggleProps {
 const Toggle = ({ checked, label, onChange }: ToggleProps) => {
   return (
     <label className="flex cursor-pointer items-center">
-      <span className="mr-3 text-sm font-medium text-white">{label}</span>
+      <span className="mr-3 shrink-0 whitespace-nowrap text-sm font-medium text-white">
+        {label}
+      </span>
       <div className="relative">
         <input
           checked={checked}
@@ -30,7 +32,7 @@ const Toggle = ({ checked, label, onChange }: ToggleProps) => {
           className={cn(
             "absolute left-[2px] top-[2px] h-7 w-7 rounded-full bg-white transition-transform duration-300 ease-in-out",
             {
-              "translate-x-full": checked,
+              "translate-x-[90%]": checked,
             },
           )}
         />
