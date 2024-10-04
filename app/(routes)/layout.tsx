@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+import "../globals.css";
 
 const articulatCF = localFont({
   src: [
     {
-      path: "../public/assets/fonts/ArticulatCF-Normal.otf",
+      path: "../../public/assets/fonts/ArticulatCF-Normal.otf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../public/assets/fonts/ArticulatCF-Medium.otf",
+      path: "../../public/assets/fonts/ArticulatCF-Medium.otf",
       weight: "500",
       style: "normal",
     },
