@@ -8,9 +8,9 @@ interface HeaderProps {
 
 const Header = ({ hideSearch }: HeaderProps) => {
   return (
-    <header className="flex min-h-[96px] w-full bg-cod-gray py-7 text-xl">
-      <div className="container mx-auto flex items-center gap-[54px]">
-        <Link href="/">
+    <header className="flex min-h-[72px] w-full bg-cod-gray py-4 text-xl sm:min-h-[96px] sm:py-7">
+      <div className="container mx-auto flex items-center justify-between gap-[54px] px-4 sm:px-8">
+        <Link href="/" className="shrink-0">
           <Image src="/logo.svg" alt="MUSE.ai" width={87} height={22} />
         </Link>
 

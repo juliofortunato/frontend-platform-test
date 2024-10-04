@@ -8,7 +8,7 @@ const LibraryFilters = () => {
   const [sortAlphabetically, setSortAlphabetically] = useState<boolean>(false);
 
   return (
-    <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
+    <div className="flex flex-col gap-4 sm:items-end lg:flex-row lg:items-center lg:gap-6">
       <Toggle
         checked={sortAlphabetically}
         label="Sort from A-Z"

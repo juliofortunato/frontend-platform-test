@@ -17,14 +17,18 @@ const SongCard = ({ disableFavorite = false, song }: SongCardProps) => {
       <div className="relative aspect-square overflow-hidden">
         <Image alt="" src={`/assets/images/${song.song.files.coverArt}`} fill />
       </div>
-      <div className="flex items-end justify-between p-4">
+      <div className="relative flex items-end justify-between p-4">
         <div className="max-w-full">
           <h3 className="truncate text-lg font-medium">{song.song.title}</h3>
           <h4 className="text-xs font-medium text-[#666666]">
             {song.song.artist}
           </h4>
         </div>
-        {!disableFavorite && <FavoriteButton songId={song.id} />}
+        {!disableFavorite && (
+          <div className="absolute bottom-1 right-3">
+            <FavoriteButton songId={song.id} />
+          </div>
+        )}
       </div>
     </Link>
   );

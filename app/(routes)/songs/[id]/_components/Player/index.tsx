@@ -75,7 +75,7 @@ const Player = ({ songId }: PlayerProps) => {
         }}
       /> */}
 
-      <div className="flex items-center gap-9">
+      <div className="flex flex-col items-center gap-9 sm:flex-row">
         <Image
           alt=""
           className="rounded-[5px] border border-[#666666]"
