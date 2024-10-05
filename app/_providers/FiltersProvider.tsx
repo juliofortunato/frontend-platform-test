@@ -6,9 +6,14 @@ import { FiltersContext } from "../_contexts/FiltersContext";
 export default function FiltersProvider({ children }: { children: ReactNode }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortAlphabetically, setSortAlphabetically] = useState(false);
+  const [favoritesOnly, setFavoritesOnly] = useState(false);
 
   const toggleSortAlphabetically = () => {
     setSortAlphabetically((previous) => !previous);
+  };
+
+  const toggleFavoritesOnly = () => {
+    setFavoritesOnly((previous) => !previous);
   };
 
   return (
@@ -18,6 +23,8 @@ export default function FiltersProvider({ children }: { children: ReactNode }) {
         search: setSearchTerm,
         sortAlphabetically,
         toggleSortAlphabetically,
+        favoritesOnly,
+        toggleFavoritesOnly,
       }}
     >
       {children}

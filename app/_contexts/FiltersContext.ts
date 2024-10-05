@@ -5,6 +5,8 @@ interface FiltersContextProps {
   search: (searchTerm: string) => void;
   sortAlphabetically: boolean;
   toggleSortAlphabetically: () => void;
+  favoritesOnly: boolean;
+  toggleFavoritesOnly: () => void;
 }
 
 export const FiltersContext = createContext<FiltersContextProps>({
@@ -12,4 +14,6 @@ export const FiltersContext = createContext<FiltersContextProps>({
   search: () => {},
   sortAlphabetically: false,
   toggleSortAlphabetically: () => {},
+  favoritesOnly: false,
+  toggleFavoritesOnly: () => {},
 });
