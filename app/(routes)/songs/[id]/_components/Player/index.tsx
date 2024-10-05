@@ -73,16 +73,15 @@ const Player = ({ songId }: PlayerProps) => {
 
   return (
     <>
-      {/* <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50 blur-xl"
+      <div
+        className={`pointer-events-none absolute inset-0 hidden bg-cover bg-right-top bg-no-repeat opacity-50 blur-sm sm:block sm:bg-right-top`}
         style={{
           backgroundImage: `url('/assets/images/${data?.song.files.poster}')`,
-          backgroundPosition: "right center",
-          backgroundSize: "100% auto",
+          backgroundSize: "50% auto",
         }}
-      /> */}
+      />
 
-      <div className="flex flex-col items-center gap-9 sm:flex-row">
+      <div className="flex flex-col items-center gap-9 py-20 sm:flex-row">
         <Image
           alt=""
           className="border-dove-gray rounded-[5px] border"
@@ -131,6 +130,7 @@ const Player = ({ songId }: PlayerProps) => {
           </div>
         </div>
       </div>
+
       <audio
         onEnded={handleEnded}
         onLoadedMetadata={handleLoadedMetadata}

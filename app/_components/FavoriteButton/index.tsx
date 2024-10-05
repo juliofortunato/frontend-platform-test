@@ -19,7 +19,10 @@ const FavoriteButton = ({ songId }: FavoriteButtonProps) => {
   };
 
   return (
-    <button onClick={handleFavoriteClick}>
+    <button
+      onClick={handleFavoriteClick}
+      title={`${isFavorite ? "Remove from favorites" : "Add to favorites"}`}
+    >
       <HeartIcon
         className={cn("transition-colors", {
           "fill-carnation text-carnation": isFavorite,
