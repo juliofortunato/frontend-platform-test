@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import localFont from "next/font/local";
-import FavoritesProvider from "../_providers/FavoritesProvider";
 import ReactQueryProvider from "../_providers/ReactQueryProvider";
 import "../globals.css";
+const FavoritesProvider = dynamic(
+  () => import("../_providers/FavoritesProvider"),
+  { ssr: false },
+);
 
 const articulatCF = localFont({
   src: [
