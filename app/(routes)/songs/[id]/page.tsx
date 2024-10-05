@@ -10,7 +10,10 @@ interface SongPageProps {
 const SongPage = ({ params: { id } }: SongPageProps) => {
   return (
     <div className="container relative mx-auto px-8 pb-16">
-      <Player songId={Number(id)} />
+      <div className="py-20">
+        <Player songId={Number(id)} />
+      </div>
+
       <RelatedAlbums songId={Number(id)} />
     </div>
   );

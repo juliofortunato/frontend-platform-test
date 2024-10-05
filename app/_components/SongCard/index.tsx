@@ -11,7 +11,7 @@ interface SongCardProps {
 const SongCard = ({ disableFavorite = false, song }: SongCardProps) => {
   return (
     <Link
-      className="bg-mine-shaft group w-full max-w-[283px] overflow-hidden rounded-md transition-colors hover:bg-white/25"
+      className="bg-mine-shaft group z-10 w-full max-w-[283px] overflow-hidden rounded-md transition-colors hover:bg-cod-gray"
       href={`/songs/${song.id}`}
     >
       <div className="relative aspect-square overflow-hidden">

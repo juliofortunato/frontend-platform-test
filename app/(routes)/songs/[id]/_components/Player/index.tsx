@@ -74,14 +74,14 @@ const Player = ({ songId }: PlayerProps) => {
   return (
     <>
       <div
-        className={`pointer-events-none absolute inset-0 hidden bg-cover bg-right-top bg-no-repeat opacity-50 blur-sm sm:block sm:bg-right-top`}
+        className={`pointer-events-none absolute inset-0 hidden h-screen bg-cover bg-right-top bg-no-repeat opacity-50 blur-sm sm:block sm:bg-right-top`}
         style={{
           backgroundImage: `url('/assets/images/${data?.song.files.poster}')`,
           backgroundSize: "50% auto",
         }}
       />
 
-      <div className="flex flex-col items-center gap-9 py-20 sm:flex-row">
+      <div className="flex flex-col items-center gap-9 sm:flex-row">
         <Image
           alt=""
           className="border-dove-gray rounded-[5px] border"
@@ -90,7 +90,7 @@ const Player = ({ songId }: PlayerProps) => {
           width={204}
         />
 
-        <div className="flex flex-col gap-9">
+        <div className="z-10 flex flex-col gap-9">
           <div className="flex items-center gap-9">
             <button
               className="h-16 w-16 rounded-full bg-white p-4 text-black transition-colors hover:bg-white/80"

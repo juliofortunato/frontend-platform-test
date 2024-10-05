@@ -31,7 +31,7 @@ const RelatedAlbums = ({ songId }: RelatedAlbumsProps) => {
   if (isLoading) return <Loading />;
 
   return (
-    <section className="space-y-5">
+    <section className="z-10 space-y-5">
       <h2 className="font-medium text-white/70">Other albums</h2>
 
       {relatedAlbums.length > 0 ? (
