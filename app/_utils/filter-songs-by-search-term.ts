@@ -1,6 +1,6 @@
 import { Song } from "../_types/song";
 
-export const filterSongBySearchTerm = (songs: Song[], searchTerm: string) => {
+export const filterSongsBySearchTerm = (songs: Song[], searchTerm: string) => {
   return songs.filter(
     ({ song }) =>
       song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||

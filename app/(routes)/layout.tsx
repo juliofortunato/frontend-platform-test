@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
+import FiltersProvider from "../_providers/FiltersProvider";
 import ReactQueryProvider from "../_providers/ReactQueryProvider";
 import "../globals.css";
 const FavoritesProvider = dynamic(
@@ -39,7 +40,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${articulatCF.className} antialiased`}>
         <ReactQueryProvider>
-          <FavoritesProvider>{children}</FavoritesProvider>
+          <FavoritesProvider>
+            <FiltersProvider>{children}</FiltersProvider>
+          </FavoritesProvider>
         </ReactQueryProvider>
       </body>
     </html>

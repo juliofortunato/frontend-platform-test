@@ -5,13 +5,13 @@ import SongCard from "@/app/_components/SongCard";
 import { useFavorites } from "@/app/_hooks/useFavorites";
 import { useFilters } from "@/app/_hooks/useFilters";
 import { useSongs } from "@/app/_services/songs";
-import { filterSongBySearchTerm } from "@/app/_utils/filter-song-by-search-term";
+import { filterSongsBySearchTerm } from "@/app/_utils/filter-songs-by-search-term";
 
 const SongList = () => {
   const { data, isLoading, error } = useSongs();
   const { searchTerm, sortAlphabetically, favoritesOnly } = useFilters();
   const { favoriteSongIds } = useFavorites();
-  let filteredSongs = filterSongBySearchTerm(data?.songs || [], searchTerm);
+  let filteredSongs = filterSongsBySearchTerm(data?.songs || [], searchTerm);
 
   if (sortAlphabetically) {
     filteredSongs?.sort((a, b) => a.song.title.localeCompare(b.song.title));
