@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   content: [
@@ -18,6 +19,19 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addVariant, addUtilities }) {
+      addVariant("slider-thumb", [
+        "&::-webkit-slider-thumb",
+        "&::-moz-range-thumb",
+      ]);
+      addUtilities({
+        ".slider": {
+          "@apply slider-thumb:h-3 slider-thumb:w-3 slider-thumb:cursor-pointer slider-thumb:appearance-none slider-thumb:rounded-full slider-thumb:bg-white":
+            {},
+        },
+      });
+    }),
+  ],
 };
 export default config;
