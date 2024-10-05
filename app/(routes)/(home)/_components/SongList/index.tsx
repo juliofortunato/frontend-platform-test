@@ -2,13 +2,12 @@
 
 import Loading from "@/app/_components/Loading";
 import SongCard from "@/app/_components/SongCard";
-import { FiltersContext } from "@/app/_contexts/FiltersContext";
+import { useFilters } from "@/app/_hooks/useFilters";
 import { useSongs } from "@/app/_services/songs";
-import { useContext } from "react";
 
 const SongList = () => {
   const { data, isLoading, error } = useSongs();
-  const { searchTerm, sortAlphabetically } = useContext(FiltersContext);
+  const { searchTerm, sortAlphabetically } = useFilters();
   const filteredSongs = data?.songs.filter(
     ({ song }) =>
       song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||

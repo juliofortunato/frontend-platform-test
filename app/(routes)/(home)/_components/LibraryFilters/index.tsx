@@ -2,12 +2,11 @@
 
 import SearchInput from "@/app/_components/SearchInput";
 import Toggle from "@/app/_components/Toggle";
-import { FiltersContext } from "@/app/_contexts/FiltersContext";
-import { useContext } from "react";
+import { useFilters } from "@/app/_hooks/useFilters";
 
 const LibraryFilters = () => {
   const { search, searchTerm, sortAlphabetically, toggleSortAlphabetically } =
-    useContext(FiltersContext);
+    useFilters();
 
   return (
     <div className="flex flex-col gap-4 sm:items-end lg:flex-row lg:items-center lg:gap-6">
