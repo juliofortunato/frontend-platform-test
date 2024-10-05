@@ -6,7 +6,7 @@ export default function SongLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="h-screen bg-[#12303B]">
+    <div className="min-h-screen bg-[#12303B]">
       <Header />
       <main>{children}</main>
     </div>

@@ -35,7 +35,7 @@ const RelatedAlbums = ({ songId }: RelatedAlbumsProps) => {
       <h2 className="font-medium text-white/70">Other albums</h2>
 
       {relatedAlbums.length > 0 ? (
-        <div className="grid grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-8 md:grid-cols-4 lg:grid-cols-5">
           {relatedAlbums.map((relatedAlbum) => (
             <SongCard
               key={relatedAlbum.id}

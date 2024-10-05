@@ -6,11 +6,11 @@ import SongList from "./_components/SongList";
 
 export default function Home() {
   return (
-    <main>
+    <>
       <Header hideSearch />
 
       <FiltersProvider>
-        <div className="container mx-auto space-y-3 px-4 py-12 sm:px-8">
+        <main className="container mx-auto space-y-3 px-4 py-12 sm:px-8">
           <div className="flex flex-col justify-between space-y-6 sm:flex-row sm:items-end lg:items-center lg:space-y-0">
             <div className="flex flex-col gap-1 sm:gap-3">
               <div className="flex items-center justify-between gap-2 sm:justify-start">
@@ -24,8 +24,8 @@ export default function Home() {
             <LibraryFilters />
           </div>
           <SongList />
-        </div>
+        </main>
       </FiltersProvider>
-    </main>
+    </>
   );
 }

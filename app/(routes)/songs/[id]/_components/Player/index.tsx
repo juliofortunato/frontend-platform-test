@@ -94,7 +94,7 @@ const Player = ({ songId }: PlayerProps) => {
         <div className="flex flex-col gap-9">
           <div className="flex items-center gap-9">
             <button
-              className="h-16 w-16 rounded-full bg-white p-4 text-black hover:bg-white/80"
+              className="h-16 w-16 rounded-full bg-white p-4 text-black transition-colors hover:bg-white/80"
               onClick={togglePlay}
             >
               {isPlaying ? (
