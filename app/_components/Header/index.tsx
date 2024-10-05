@@ -1,6 +1,6 @@
+import AutoComplete from "@/app/(routes)/songs/[id]/_components/Autocomplete";
 import Image from "next/image";
 import Link from "next/link";
-import SearchInput from "../SearchInput";
 
 interface HeaderProps {
   hideSearch?: boolean;
@@ -14,7 +14,7 @@ const Header = ({ hideSearch }: HeaderProps) => {
           <Image src="/logo.svg" alt="MUSE.ai" width={87} height={22} />
         </Link>
 
-        {!hideSearch && <SearchInput />}
+        {!hideSearch && <AutoComplete />}
       </div>
     </header>
   );
