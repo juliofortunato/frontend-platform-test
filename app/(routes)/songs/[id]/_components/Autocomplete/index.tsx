@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/app/_components/Loading";
 import SearchInput from "@/app/_components/SearchInput";
 import { useSongs } from "@/app/_services/songs";
 import { filterSongBySearchTerm } from "@/app/_utils/filter-song-by-search-term";
@@ -7,9 +8,11 @@ import Link from "next/link";
 import { useState } from "react";
 
 const Autocomplete = () => {
-  const { data } = useSongs();
+  const { data, isLoading } = useSongs();
   const [searchTerm, setSearchTerm] = useState("");
   const filteredSongs = filterSongBySearchTerm(data?.songs || [], searchTerm);
+
+  if (isLoading) return <Loading />;
 
   return (
     <div className="relative space-y-2">

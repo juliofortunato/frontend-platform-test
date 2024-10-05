@@ -1,6 +1,7 @@
 "use client";
 
 import FavoriteButton from "@/app/_components/FavoriteButton";
+import Loading from "@/app/_components/Loading";
 import { useSong } from "@/app/_services/song";
 import { PauseIcon, PlayIcon } from "lucide-react";
 import Image from "next/image";
@@ -12,7 +13,7 @@ interface PlayerProps {
 }
 
 const Player = ({ songId }: PlayerProps) => {
-  const { data } = useSong(songId);
+  const { data, isLoading, error } = useSong(songId);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
@@ -63,6 +64,12 @@ const Player = ({ songId }: PlayerProps) => {
 
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
+
+  if (isLoading) return <Loading />;
+
+  if (error) {
+    return <p>Error while fetching the song: {error.message}</p>;
+  }
 
   return (
     <>
