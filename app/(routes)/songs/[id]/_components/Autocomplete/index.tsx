@@ -2,21 +2,21 @@
 
 import Loading from "@/app/_components/Loading";
 import SearchInput from "@/app/_components/SearchInput";
-import { useFilters } from "@/app/_hooks/useFilters";
 import { useSongs } from "@/app/_services/songs";
 import { filterSongsBySearchTerm } from "@/app/_utils/filter-songs-by-search-term";
 import Link from "next/link";
+import { useState } from "react";
 
 const Autocomplete = () => {
   const { data, isLoading } = useSongs();
-  const { searchTerm, search } = useFilters();
+  const [searchTerm, setSearchTerm] = useState("");
   const filteredSongs = filterSongsBySearchTerm(data?.songs || [], searchTerm);
 
   if (isLoading) return <Loading />;
 
   return (
     <div className="relative space-y-2">
-      <SearchInput onChange={search} value={searchTerm} />
+      <SearchInput onChange={setSearchTerm} value={searchTerm} />
       {searchTerm && (
         <div className="bg-mine-shaft absolute z-10 w-full rounded-md px-4">
           {filteredSongs?.map((song) => (
