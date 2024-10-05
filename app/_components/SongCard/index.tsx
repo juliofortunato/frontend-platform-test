@@ -11,7 +11,7 @@ interface SongCardProps {
 const SongCard = ({ disableFavorite = false, song }: SongCardProps) => {
   return (
     <Link
-      className="group w-full max-w-[283px] overflow-hidden rounded-md bg-[#262626] transition-colors hover:bg-white/25"
+      className="bg-mine-shaft group w-full max-w-[283px] overflow-hidden rounded-md transition-colors hover:bg-white/25"
       href={`/songs/${song.id}`}
     >
       <div className="relative aspect-square overflow-hidden">
@@ -27,7 +27,7 @@ const SongCard = ({ disableFavorite = false, song }: SongCardProps) => {
       <div className="relative flex items-end justify-between p-4">
         <div className="max-w-full">
           <h3 className="truncate text-lg font-medium">{song.song.title}</h3>
-          <h4 className="truncate text-xs font-medium text-[#666666] transition-colors group-hover:text-white">
+          <h4 className="text-dove-gray truncate text-xs font-medium transition-colors group-hover:text-white">
             {song.song.artist}
           </h4>
         </div>

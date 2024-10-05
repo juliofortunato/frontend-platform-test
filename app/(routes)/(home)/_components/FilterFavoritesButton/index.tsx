@@ -18,8 +18,8 @@ const FilterFavoritesButton = () => {
       onClick={toggleFavoritesOnly}
     >
       <HeartIcon
-        className={cn({
-          "fill-[#F8594E] text-[#F8594E]": favoritesOnly,
+        className={cn("transition-colors", {
+          "fill-carnation text-carnation": favoritesOnly,
         })}
         size={20}
       />

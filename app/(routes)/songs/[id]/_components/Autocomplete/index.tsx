@@ -18,11 +18,11 @@ const Autocomplete = () => {
     <div className="relative space-y-2">
       <SearchInput onChange={setSearchTerm} value={searchTerm} />
       {searchTerm && (
-        <div className="absolute z-10 w-full rounded-md bg-[#2d2d2d] px-4">
+        <div className="bg-mine-shaft absolute z-10 w-full rounded-md px-4">
           {filteredSongs?.map((song) => (
             <Link
               href={`/songs/${song.id}`}
-              className="block border-b border-[#545454] py-2 text-sm font-medium text-[#d1d1d1] transition-colors last:border-none hover:text-white"
+              className="border-emperor block border-b py-2 text-sm font-medium text-cod-gray transition-colors last:border-none hover:text-white"
               key={song.id}
             >
               {song.song.title}

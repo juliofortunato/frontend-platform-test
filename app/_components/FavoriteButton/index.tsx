@@ -21,8 +21,8 @@ const FavoriteButton = ({ songId }: FavoriteButtonProps) => {
   return (
     <button onClick={handleFavoriteClick}>
       <HeartIcon
-        className={cn({
-          "fill-[#F8594E] text-[#F8594E]": isFavorite,
+        className={cn("transition-colors", {
+          "fill-carnation text-carnation": isFavorite,
         })}
         size={20}
       />

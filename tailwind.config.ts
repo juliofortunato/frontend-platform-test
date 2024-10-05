@@ -12,7 +12,14 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        "cod-gray": "#1d1d1d",
+        "bright-turquoise": "#00DAE8",
+        "cod-gray": "#1D1D1D",
+        "dove-gray": "#666666",
+        "mine-shaft": "#2D2D2D",
+        "silver-chalice": "#A8A8A8",
+        carnation: "#F8594E",
+        emperor: "#545454",
+        firefly: "#12303B",
       },
       fontFamily: {
         sans: ["var(--font-articulat-cf)", "sans-serif"],

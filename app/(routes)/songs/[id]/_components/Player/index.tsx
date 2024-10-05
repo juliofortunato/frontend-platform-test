@@ -85,7 +85,7 @@ const Player = ({ songId }: PlayerProps) => {
       <div className="flex flex-col items-center gap-9 sm:flex-row">
         <Image
           alt=""
-          className="rounded-[5px] border border-[#666666]"
+          className="border-dove-gray rounded-[5px] border"
           height={204}
           src={`/assets/images/${data?.song.files.coverArt}`}
           width={204}
@@ -124,7 +124,7 @@ const Player = ({ songId }: PlayerProps) => {
               step={1}
               onChange={handleSliderChange}
             />
-            <div className="flex items-center justify-between text-sm text-[#A8A8A8]">
+            <div className="text-silver-chalice flex items-center justify-between text-sm">
               <span>{formatTime(currentTime)}</span>
               <span>-{formatTime(duration - currentTime)}</span>
             </div>

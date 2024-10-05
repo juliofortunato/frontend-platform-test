@@ -21,11 +21,10 @@ const Toggle = ({ checked, label, onChange }: ToggleProps) => {
         />
         <div
           className={cn(
+            "block h-8 w-14 rounded-full bg-white/25 transition-colors",
             {
-              "bg-[#00DAE8]": checked,
-              "bg-white/25": !checked,
+              "bg-bright-turquoise": checked,
             },
-            "block h-8 w-14 rounded-full",
           )}
         />
         <div
