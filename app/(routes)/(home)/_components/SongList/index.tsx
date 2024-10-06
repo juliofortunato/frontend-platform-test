@@ -36,7 +36,9 @@ const SongList = () => {
   return (
     <>
       <p className="font-medium text-white/50">
-        You have {data?.songs.length || 0} songs in your library
+        {searchTerm
+          ? `Your search has returned ${filteredSongs.length} results`
+          : `You have ${data?.songs.length || 0} songs in your library`}
       </p>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-5">
         {filteredSongs.map((song) => (
