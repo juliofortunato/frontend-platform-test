@@ -17,6 +17,7 @@ const config: Config = {
         "dove-gray": "#666666",
         "mine-shaft": "#2D2D2D",
         "silver-chalice": "#A8A8A8",
+        alto: "#D1D1D1",
         carnation: "#F8594E",
         emperor: "#545454",
         firefly: "#12303B",

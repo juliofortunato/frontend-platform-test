@@ -22,7 +22,7 @@ const Autocomplete = () => {
           {filteredSongs?.map((song) => (
             <Link
               href={`/songs/${song.id}`}
-              className="border-emperor block border-b py-2 text-sm font-medium text-cod-gray transition-colors last:border-none hover:text-white"
+              className="border-emperor text-alto block border-b py-2 text-sm font-medium transition-colors last:border-none hover:text-white"
               key={song.id}
             >
               {song.song.title}
