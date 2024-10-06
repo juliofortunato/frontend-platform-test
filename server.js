@@ -1,12 +1,12 @@
-const http = require("http");
-const fs = require("fs");
+import { readFileSync } from "fs";
+import { createServer } from "http";
 const hostname = "127.0.0.1";
 const port = 8000;
 const payload = JSON.parse(
-  fs.readFileSync("./server-payload.json", { encoding: "utf8" }),
+  readFileSync("./server-payload.json", { encoding: "utf8" }),
 );
 
-const server = http.createServer((req, res) => {
+const server = createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader("Content-Type", "text/plain");
   res.setHeader("Access-Control-Allow-Origin", "*");
