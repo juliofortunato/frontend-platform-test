@@ -74,7 +74,7 @@ const Player = ({ songId }: PlayerProps) => {
   return (
     <>
       <div
-        className={`pointer-events-none absolute inset-0 hidden h-screen bg-cover bg-right-top bg-no-repeat opacity-50 blur-sm sm:block sm:bg-right-top`}
+        className={`pointer-events-none absolute inset-0 hidden h-screen max-h-[90%] bg-cover bg-right-top bg-no-repeat opacity-50 blur-sm sm:block sm:bg-right-top`}
         style={{
           backgroundImage: `url('/assets/images/${data?.song.files.poster}')`,
           backgroundSize: "50% auto",
@@ -108,11 +108,13 @@ const Player = ({ songId }: PlayerProps) => {
                 <h1 className="text-[2rem] font-medium">{data?.song.title}</h1>
                 {data?.id && <FavoriteButton songId={data.id} />}
               </div>
-              <p className="font-medium text-white/90">
-                {data?.song.artist} &nbsp;&nbsp;|&nbsp;&nbsp;
-                {data?.song.album.title} &nbsp;&nbsp;|&nbsp;&nbsp;
-                {data?.song.album.year}
-              </p>
+              <div className="flex flex-col gap-1 font-medium text-white/90 md:flex-row md:gap-3">
+                <span>{data?.song.artist}</span>
+                <span className="hidden md:block">|</span>
+                <span>{data?.song.album.title}</span>
+                <span className="hidden md:block">|</span>
+                <span>{data?.song.album.year}</span>
+              </div>
             </div>
           </div>
 

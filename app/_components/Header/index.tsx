@@ -9,7 +9,7 @@ interface HeaderProps {
 const Header = ({ hideSearch }: HeaderProps) => {
   return (
     <header className="flex min-h-[72px] w-full bg-cod-gray py-4 text-xl sm:min-h-[96px] sm:py-7">
-      <div className="container mx-auto flex items-center justify-between gap-[54px] px-4 sm:px-8">
+      <div className="container mx-auto flex items-center justify-between gap-[54px] px-8">
         <Link href="/" className="shrink-0">
           <Image
             src="/logo.svg"
