@@ -1,6 +1,5 @@
 "use client";
 
-import Loading from "@/app/_components/Loading";
 import SongCard from "@/app/_components/SongCard";
 import { useSong } from "@/app/_services/song";
 import { useSongs } from "@/app/_services/songs";
@@ -28,7 +27,7 @@ const RelatedAlbums = ({ songId }: RelatedAlbumsProps) => {
     setRelatedAlbums(filteredRelatedAlbums);
   }, [allSongsData?.songs, currentSongData?.related]);
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return;
 
   return (
     <section className="z-10 space-y-5">
