@@ -3,8 +3,7 @@
 import SongCard from "@/app/_components/SongCard";
 import { useSong } from "@/app/_services/song";
 import { useSongs } from "@/app/_services/songs";
-import { Song } from "@/app/_types/song";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 
 interface RelatedAlbumsProps {
   songId: number;
@@ -14,17 +13,15 @@ const RelatedAlbums = ({ songId }: RelatedAlbumsProps) => {
   const { data: allSongsData, isLoading: isLoadingAllSongs } = useSongs();
   const { data: currentSongData, isLoading: isLoadingCurrentSong } =
     useSong(songId);
-  const [relatedAlbums, setRelatedAlbums] = useState<Song[]>([]);
   const isLoading = isLoadingAllSongs || isLoadingCurrentSong;
 
-  useEffect(() => {
+  const relatedAlbums = useMemo(() => {
     const relatedAlbumIds = currentSongData?.related || [];
-    const filteredRelatedAlbums =
+    return (
       allSongsData?.songs?.filter((song) =>
         relatedAlbumIds.includes(song.id),
-      ) || [];
-
-    setRelatedAlbums(filteredRelatedAlbums);
+      ) || []
+    );
   }, [allSongsData?.songs, currentSongData?.related]);
 
   if (isLoading) return;

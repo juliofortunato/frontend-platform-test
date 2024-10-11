@@ -1,6 +1,7 @@
 import { Song } from "@/app/_types/song";
 import Image from "next/image";
 import Link from "next/link";
+import { memo } from "react";
 import FavoriteButton from "../FavoriteButton";
 
 interface SongCardProps {
@@ -8,10 +9,10 @@ interface SongCardProps {
   song: Song;
 }
 
-const SongCard = ({ disableFavorite = false, song }: SongCardProps) => {
+const SongCard = memo(({ disableFavorite = false, song }: SongCardProps) => {
   return (
     <Link
-      className="bg-mine-shaft group z-10 w-full max-w-[283px] overflow-hidden rounded-md transition-colors hover:bg-cod-gray"
+      className="group z-10 w-full max-w-[283px] overflow-hidden rounded-md bg-mine-shaft transition-colors hover:bg-cod-gray"
       href={`/songs/${song.id}`}
     >
       <div className="relative aspect-square overflow-hidden">
@@ -27,7 +28,7 @@ const SongCard = ({ disableFavorite = false, song }: SongCardProps) => {
       <div className="relative flex items-end justify-between p-4">
         <div className="max-w-full">
           <h3 className="truncate text-lg font-medium">{song.song.title}</h3>
-          <h4 className="text-dove-gray truncate text-xs font-medium transition-colors group-hover:text-white">
+          <h4 className="truncate text-xs font-medium text-dove-gray transition-colors group-hover:text-white">
             {song.song.artist}
           </h4>
         </div>
@@ -39,6 +40,8 @@ const SongCard = ({ disableFavorite = false, song }: SongCardProps) => {
       </div>
     </Link>
   );
-};
+});
+
+SongCard.displayName = "SongCard";
 
 export default SongCard;

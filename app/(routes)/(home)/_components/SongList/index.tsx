@@ -6,22 +6,34 @@ import { useFavorites } from "@/app/_hooks/useFavorites";
 import { useFilters } from "@/app/_hooks/useFilters";
 import { useSongs } from "@/app/_services/songs";
 import { filterSongsBySearchTerm } from "@/app/_utils/filter-songs-by-search-term";
+import { useMemo } from "react";
 
 const SongList = () => {
   const { data, isLoading, error } = useSongs();
   const { searchTerm, sortAlphabetically, favoritesOnly } = useFilters();
   const { favoriteSongIds } = useFavorites();
-  let filteredSongs = filterSongsBySearchTerm(data?.songs || [], searchTerm);
 
-  if (sortAlphabetically) {
-    filteredSongs?.sort((a, b) => a.song.title.localeCompare(b.song.title));
-  }
+  const processsedSongs = useMemo(() => {
+    let filtered = filterSongsBySearchTerm(data?.songs || [], searchTerm);
 
-  if (favoritesOnly) {
-    filteredSongs = filteredSongs?.filter((song) =>
-      favoriteSongIds.includes(song.id),
-    );
-  }
+    if (sortAlphabetically) {
+      filtered = [...filtered].sort((a, b) =>
+        a.song.title.localeCompare(b.song.title),
+      );
+    }
+
+    if (favoritesOnly) {
+      filtered = filtered.filter((song) => favoriteSongIds.includes(song.id));
+    }
+
+    return filtered;
+  }, [
+    data?.songs,
+    favoriteSongIds,
+    favoritesOnly,
+    searchTerm,
+    sortAlphabetically,
+  ]);
 
   if (isLoading) return <Loading />;
 
@@ -29,7 +41,7 @@ const SongList = () => {
     return <p>Error while fetching songs: {error.message}</p>;
   }
 
-  if (!filteredSongs || !filteredSongs.length) {
+  if (!processsedSongs || !processsedSongs.length) {
     return <p>No songs matched the search criteria</p>;
   }
 
@@ -37,11 +49,11 @@ const SongList = () => {
     <>
       <p className="font-medium text-white/50">
         {searchTerm
-          ? `Your search has returned ${filteredSongs.length} results`
+          ? `Your search has returned ${processsedSongs.length} results`
           : `You have ${data?.songs.length || 0} songs in your library`}
       </p>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-5">
-        {filteredSongs.map((song) => (
+        {processsedSongs.map((song) => (
           <SongCard key={song.id} song={song} />
         ))}
       </div>

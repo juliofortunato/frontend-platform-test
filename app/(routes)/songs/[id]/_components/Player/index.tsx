@@ -5,7 +5,14 @@ import Loading from "@/app/_components/Loading";
 import { useSong } from "@/app/_services/song";
 import { PauseIcon, PlayIcon } from "lucide-react";
 import Image from "next/image";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import Slider from "../Slider";
 
 interface PlayerProps {
@@ -28,21 +35,21 @@ const Player = ({ songId }: PlayerProps) => {
     }
   }, [isPlaying]);
 
-  const togglePlay = () => {
+  const togglePlay = useCallback(() => {
     setIsPlaying((previous) => !previous);
-  };
+  }, []);
 
-  const handleTimeUpdate = () => {
+  const handleTimeUpdate = useCallback(() => {
     if (!audioRef.current) return;
     setCurrentTime(audioRef.current.currentTime);
-  };
+  }, []);
 
-  const handleSliderChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSliderChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     if (!audioRef.current) return;
     const value = Number(e.target.value);
     audioRef.current.currentTime = value;
     setCurrentTime(value);
-  };
+  }, []);
 
   const handleLoadedMetadata = () => {
     if (!audioRef.current) return;
@@ -58,12 +65,20 @@ const Player = ({ songId }: PlayerProps) => {
     }
   };
 
-  const formatTime = (time: number) => {
+  const formatTime = useCallback((time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
 
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
-  };
+  }, []);
+
+  const backgoundStyle = useMemo(
+    () => ({
+      backgroundImage: `url('/assets/images/${data?.song.files.poster}')`,
+      backgroundSize: "50% auto",
+    }),
+    [data?.song.files.poster],
+  );
 
   if (isLoading) return <Loading />;
 
@@ -75,16 +90,13 @@ const Player = ({ songId }: PlayerProps) => {
     <>
       <div
         className={`pointer-events-none absolute inset-0 hidden h-screen max-h-[90%] bg-cover bg-right-top bg-no-repeat opacity-50 blur-sm sm:block sm:bg-right-top`}
-        style={{
-          backgroundImage: `url('/assets/images/${data?.song.files.poster}')`,
-          backgroundSize: "50% auto",
-        }}
+        style={backgoundStyle}
       />
 
       <div className="flex flex-col items-center gap-9 sm:flex-row">
         <Image
           alt=""
-          className="border-dove-gray rounded-[5px] border"
+          className="rounded-[5px] border border-dove-gray"
           height={204}
           src={`/assets/images/${data?.song.files.coverArt}`}
           width={204}
@@ -125,7 +137,7 @@ const Player = ({ songId }: PlayerProps) => {
               step={1}
               onChange={handleSliderChange}
             />
-            <div className="text-silver-chalice flex items-center justify-between text-sm">
+            <div className="flex items-center justify-between text-sm text-silver-chalice">
               <span>{formatTime(currentTime)}</span>
               <span>-{formatTime(duration - currentTime)}</span>
             </div>

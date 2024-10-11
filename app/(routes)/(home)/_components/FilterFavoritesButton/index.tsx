@@ -3,9 +3,14 @@
 import { useFilters } from "@/app/_hooks/useFilters";
 import { cn } from "@/app/_utils/cn";
 import { HeartIcon } from "lucide-react";
+import { useCallback } from "react";
 
 const FilterFavoritesButton = () => {
   const { favoritesOnly, toggleFavoritesOnly } = useFilters();
+
+  const handleCLick = useCallback(() => {
+    toggleFavoritesOnly();
+  }, [toggleFavoritesOnly]);
 
   return (
     <button
@@ -15,7 +20,7 @@ const FilterFavoritesButton = () => {
           "bg-white/25": favoritesOnly,
         },
       )}
-      onClick={toggleFavoritesOnly}
+      onClick={handleCLick}
     >
       <HeartIcon
         className={cn("transition-colors", {
